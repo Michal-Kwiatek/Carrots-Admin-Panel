@@ -10,7 +10,7 @@ import { ProfilesService } from './profiles.service';
         <h3 class="card-header">Create new profile</h3>
         <form class="card-block" #profileForm="ngForm" (ngSubmit)="createProfile(profileForm)">
           <div class="formRow">
-            <label for="rabbitName">Name: </label>
+            <label for="rabbitName">Rabbit name: </label>
             <input type="text" name="rabbitName" required minlength="3" maxlength="18" [(ngModel)]="rabbitName" id="rabbitName">
           </div>
           <div class="formRow">

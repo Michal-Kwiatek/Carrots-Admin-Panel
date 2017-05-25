@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProfilesService } from './profiles.service';
 import { Rabbit } from './rabbit'
 
@@ -26,16 +26,16 @@ import { Rabbit } from './rabbit'
     
   `]
 })
-export class TableProfilesComponent implements OnInit {
+export class TableProfilesComponent {
   
   profiles: Array<Rabbit>;
 
   constructor(private profilesService: ProfilesService) {
-    this.profiles = profilesService.getProfiles();
+    
+    profilesService.getProfilesStream()
+      .subscribe( profiles => {
+        this.profiles = profiles
+      })
   }
-   
-
-  ngOnInit() {
-  }
-
+  
 }
