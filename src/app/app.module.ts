@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NewProfileComponent } from './new-profile.component';
 import { TableProfilesComponent } from './table-profiles.component';
 import { CoutingSortPipe } from './couting-sort.pipe';
+import { EditProfileComponent } from './edit-profile.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CoutingSortPipe } from './couting-sort.pipe';
     AppComponent,
     NewProfileComponent,
     TableProfilesComponent,
-    CoutingSortPipe
+    CoutingSortPipe,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

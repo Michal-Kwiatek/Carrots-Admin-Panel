@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ProfilesService } from './profiles.service';
-import { Rabbit } from './rabbit'
+import { Rabbit } from './rabbit.interface'
 
 @Component({
   selector: 'table-profiles',
   template: `
-    <table class="table">
+    <table class="table table-bordered">
       <thead class="thead-inverse">
         <tr>
           <th>#</th>
@@ -23,7 +23,9 @@ import { Rabbit } from './rabbit'
     </table>
   `,
   styles: [`
-    
+    table, th {
+      text-align: center;
+    }
   `]
 })
 export class TableProfilesComponent {
@@ -34,7 +36,7 @@ export class TableProfilesComponent {
     
     profilesService.getProfilesStream()
       .subscribe( profiles => {
-        this.profiles = profiles
+        this.profiles = profiles.slice(0);
       })
   }
   

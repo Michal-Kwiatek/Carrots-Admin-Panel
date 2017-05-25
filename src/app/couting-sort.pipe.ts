@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Rabbit } from './rabbit'
+import { Rabbit } from './rabbit.interface';
 
 @Pipe({
   name: 'coutingSort'

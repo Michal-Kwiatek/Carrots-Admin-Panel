@@ -1,8 +1,6 @@
 .createProfile {
-    max-width: 400px;
     padding-bottom: 10px;
     text-align: center;
-
 
     .formRow {
         text-align: left;
@@ -23,7 +21,7 @@
     }
 }
 
-.ng-valid[required], .ng-valid.required  {
+.ng-valid[required]  {
   border-left: 3px solid #42A948;
 }
 
