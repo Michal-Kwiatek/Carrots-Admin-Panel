@@ -2,31 +2,5 @@
     text-align: center;
     padding: 5px;
     display: table;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
-}
-
-.createProfile {
-    max-width: 400px;
-    padding-bottom: 10px;
-    text-align: center;
-
-
-    .row {
-        text-align: left;
-        width: 100%;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-
-        input {
-            margin-left: 5px;
-        }
-    }
-
-    input.btn {
-        margin-top: 20px;
-        cursor: pointer;
-    }
+    margin: 10px auto 40px auto;
 }
