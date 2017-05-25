@@ -20,7 +20,7 @@ export class ProfilesService {
 
     this.profiles.push(newProfile);
     
-    this.saveProfilesToStorage(this.profiles);
+    this.saveProfilesToStorage();
     this.profilesStream.next(this.profiles);
   }
   
@@ -28,8 +28,16 @@ export class ProfilesService {
     return this.profilesStream.startWith( this.loadProfilesFromStorage() );
   }
 
-  saveProfilesToStorage(profiles: Array<Rabbit>): void {
+  saveProfilesToStorage(profiles: Array<Rabbit> = this.profiles): void {
     localStorage.setItem("profiles", JSON.stringify(profiles));
+  }
+  
+  deleteProfile(profile: Rabbit) {
+    let index: number = this.profiles.indexOf(profile);
+    this.profiles.splice(index, 1);
+
+    this.saveProfilesToStorage();
+    this.profilesStream.next(this.profiles);
   }
 
   loadProfilesFromStorage(): Array<Rabbit> {

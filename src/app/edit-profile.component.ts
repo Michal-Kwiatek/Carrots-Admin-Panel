@@ -6,15 +6,17 @@ import { ProfilesService } from './profiles.service';
   selector: 'edit-profile',
   template: `
      <div class="card">
-      <h3 class="card-header text-center">{{ title }}</h3>
+      <h3 class="card-header">
+        Edit<span *ngIf="selectedProfile">ing: {{ selectedProfile.name }}</span>     
+      </h3>
       <div class="card-block">
         <label for="selectProfile">Profile: </label>
         <select name="profiles" id="selectProfile" [(ngModel)] = "selectedProfile">
-          <option *ngFor="let profile of profiles" value="profile">{{profile.name}}</option>
+          <option *ngFor="let profile of profiles" [ngValue]="profile" >{{profile.name}}</option>
         </select>
         <div *ngIf="selectedProfile">
           <p>Carrots count: {{ selectedProfile.carrotsCount }}</p>
-          <button class="btn btn-danger">Delete profile</button>
+          <button (click)="deleteProfile()" class="btn btn-danger">Delete profile</button>
         </div>
       </div>
     </div>
@@ -23,15 +25,16 @@ import { ProfilesService } from './profiles.service';
 })
 export class EditProfileComponent{
     profiles: Array<Rabbit>;
-    title = "Edit";
-    selectedProfile;
+    selectedProfile: Rabbit;
 
   constructor(private profilesService: ProfilesService) { 
       profilesService.getProfilesStream()
       .subscribe( profiles => {
-        this.profiles = profiles.slice(0);
+        this.profiles = profiles.slice();
       })
   }
 
-
+  deleteProfile(): void {
+    this.profilesService.deleteProfile(this.selectedProfile);
+  }
 }

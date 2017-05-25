@@ -36,7 +36,7 @@ export class TableProfilesComponent {
     
     profilesService.getProfilesStream()
       .subscribe( profiles => {
-        this.profiles = profiles.slice(0);
+        this.profiles = profiles.slice();
       })
   }
   

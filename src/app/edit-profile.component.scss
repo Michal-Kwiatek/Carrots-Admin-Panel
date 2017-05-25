@@ -1,7 +1,15 @@
+.card{
+    text-align: center;
+}
+
 select {
     min-width: 90px;
 }
 
 p, button {
     margin-top: 15px;
+}
+
+button {
+    cursor: pointer;
 }
