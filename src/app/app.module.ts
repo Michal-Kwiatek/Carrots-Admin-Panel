@@ -7,11 +7,16 @@ import { ProfilesService } from './profiles.service';
 
 import { AppComponent } from './app.component';
 import { NewProfileComponent } from './new-profile.component';
+import { TableProfilesComponent } from './table-profiles.component';
+import { CoutingSortPipe } from './couting-sort.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewProfileComponent
+    NewProfileComponent,
+    TableProfilesComponent,
+    CoutingSortPipe
   ],
   imports: [
     BrowserModule,
