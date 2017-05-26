@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Rabbit } from './rabbit.interface'
 import { ProfilesService } from './profiles.service';
 
@@ -16,6 +16,8 @@ import { ProfilesService } from './profiles.service';
         </select>
         <div *ngIf="selectedProfile">
           <p>Carrots count: {{ selectedProfile.carrotsCount }}</p>
+          <buttons-group [buttons]="buttonsSetup"
+          (buttonClicked)="addRemoveCarrots($event)"></buttons-group>
           <button (click)="deleteProfile()" class="btn btn-danger">Delete profile</button>
         </div>
       </div>
@@ -23,18 +25,30 @@ import { ProfilesService } from './profiles.service';
   `,
   styleUrls: ['./edit-profile.component.scss']
 })
-export class EditProfileComponent{
+export class EditProfileComponent implements OnInit {
     profiles: Array<Rabbit>;
     selectedProfile: Rabbit;
+    buttonsSetup: Array<any>;
 
   constructor(private profilesService: ProfilesService) { 
       profilesService.getProfilesStream()
       .subscribe( profiles => {
-        this.profiles = profiles.slice();
+        this.profiles = profiles.slice();        // UPDATING PROFILES LIST IN TABLE WHEN NEW PROFILES ARRAY IN STREAM
       })
+
+      this.buttonsSetup = profilesService.getButtons();        // GETTING BUTTON GROUP SETUP FROM SERVICE
+  }
+  
+  addRemoveCarrots(value) {
+    console.log(value, typeof value);
   }
 
   deleteProfile(): void {
-    this.profilesService.deleteProfile(this.selectedProfile);
+    this.profilesService.deleteProfile(this.selectedProfile);        
+    this.selectedProfile = this.profiles[0];
+  }
+
+  ngOnInit() {
+    this.selectedProfile = this.profiles[0]; 
   }
 }

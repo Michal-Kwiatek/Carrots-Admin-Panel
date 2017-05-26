@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <h1 class="app__title">
-      Marchewkowy panel administratora
+      Carrots - Admin Panel
     </h1>
     
     <div class="container">

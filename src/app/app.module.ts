@@ -10,6 +10,7 @@ import { NewProfileComponent } from './new-profile.component';
 import { TableProfilesComponent } from './table-profiles.component';
 import { CoutingSortPipe } from './couting-sort.pipe';
 import { EditProfileComponent } from './edit-profile.component';
+import { ButtonsGroupComponent } from './buttons-group.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EditProfileComponent } from './edit-profile.component';
     NewProfileComponent,
     TableProfilesComponent,
     CoutingSortPipe,
-    EditProfileComponent
+    EditProfileComponent,
+    ButtonsGroupComponent
   ],
   imports: [
     BrowserModule,

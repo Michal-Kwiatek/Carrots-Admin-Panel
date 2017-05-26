@@ -36,7 +36,7 @@ export class TableProfilesComponent {
     
     profilesService.getProfilesStream()
       .subscribe( profiles => {
-        this.profiles = profiles.slice();
+        this.profiles = profiles.slice();      // UPDATING PROFILES LIST IN TABLE WHEN NEW PROFILES ARRAY IN STREAM
       })
   }
   
