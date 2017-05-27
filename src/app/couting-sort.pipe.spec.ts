@@ -14,35 +14,47 @@ function fillTable(count: number): Array<Rabbit> {
   return elements;
 }
 
+
 describe('CoutingSortPipe', () => {
   var elementsCount: number = 20000,  
       elements: Array<Rabbit> = fillTable(elementsCount),
-      pipe: CoutingSortPipe;
+      pipe: CoutingSortPipe,
+      sorted: Array<Rabbit>;
   
   beforeEach( () => {
     pipe = new CoutingSortPipe();
-  })
+  });
   
-  it(`elements count before sort should be ${elementsCount}`, () => {
+  it(`Elements count before sort should be ${elementsCount}`, () => {
     expect(elements.length).toBe(elementsCount)
-  })
-  
-  it(`elements count after sort should be ${elementsCount}`, () => {
-    var sorted = pipe.transform(elements);
-    expect(sorted.length).toBe(elementsCount)
-  })
+  });
 
-  it('sorting time should be less than 10s', () => {
-    var date = new Date();
-    var startTime: number = date.getTime();
+  it('Sorting time should be less than 10s', () => {
+    var startTime: number = new Date().getTime();
 
-    var sorted: Array<Rabbit> = pipe.transform(elements);
+    sorted = pipe.transform(elements);
 
-    date = new Date();
-    var endTime: number = date.getTime();
+    var endTime: number = new Date().getTime();
     var elapsedTime: number = (endTime-startTime) / 1000;
     
     console.info(`Sorting time: ${elapsedTime}s`);
     expect(elapsedTime).toBeLessThan(10);
   });
+
+  it(`Elements count after sort should be ${elementsCount}`, () => {
+    expect(sorted.length).toBe(elementsCount)
+  });
+
+  it('Each next element carrots count number should be equal or less', () => {
+    let sortingWorks: boolean = true;
+    
+    for(let i = 0; i < sorted.length-1; i++) {
+      if(sorted[i].carrotsCount < sorted[i+1].carrotsCount) {
+        sortingWorks = false;
+      }
+    }
+
+    expect(sortingWorks).toBe(true);
+  });
+
 });
