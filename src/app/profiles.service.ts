@@ -26,36 +26,58 @@ export class ProfilesService {
     }
 
     this.profiles.push(newProfile);
-   
-    this.saveProfiles();
-    this.profilesStream.next(this.profiles);
+    this.savePushProfiles();
   }
   
 
-  getProfilesStream(): Observable< Array<Rabbit> > {                  // RETURNING OBSERVABLE STREAM TO SUBSCRIBE,
-    return this.profilesStream.startWith( this.loadProfiles() );          // AT FIRST SUBSCRIBE SENDING PROFIELS FROM STORAGE
+  getProfilesStream(): Observable< Array<Rabbit> > {                  // RETURNS OBSERVABLE FOR PROFILES STREAM,
+    return this.profilesStream.startWith( this.loadProfiles() );          // AT INITIAL SUBSCRIBE SENDING PROFIELS FROM STORAGE
   }
 
 
-  saveProfiles(profiles: Array<Rabbit> = this.profiles): void {          // SAVE PROFILES TO THE LOCALSTORAGE
+  savePushProfiles(profiles: Array<Rabbit> = this.profiles): void {          // SAVEING PROFILES TO THE LOCALSTORAGE AND PUSHING TO THE STREAM
     localStorage.setItem("profiles", JSON.stringify(profiles));
+    this.profilesStream.next(profiles);
   }
   
 
-  deleteProfile(profile: Rabbit) {
-    let index: number = this.profiles.indexOf(profile);            // DELETING SPECIFIC PROFILE, SAVING AND PUSHING UPDATED
+  deleteProfile(profile: Rabbit): void {
+    let index: number = this.getProfileIndex(profile);            // DELETING SPECIFIC PROFILE, SAVING AND PUSHING UPDATED
     this.profiles.splice(index, 1);                                   // PROFILES ARRAY
 
-    this.saveProfiles();
-    this.profilesStream.next(this.profiles);
+    this.savePushProfiles();
   }
 
 
   loadProfiles(): Array<Rabbit> {
     let profilesInStorage = JSON.parse(localStorage.getItem('profiles'));
-    if (!profilesInStorage) { profilesInStorage = [] };                      // LOAD PROFILES FROM LOCALSTORAGE
+    if (!profilesInStorage) { profilesInStorage = [] };                      // RETURNS PROFILES FROM LOCALSTORAGE
 
     return profilesInStorage;
+  }
+  
+  getProfileIndex(profile: Rabbit): number {                  // RETURNS INDEX IN PROFILES ARRAY OF PROVIDED PROFILE, LESS STRICT THAN .INDEXOF()
+    for(let index in this.profiles) {
+      if(profile.name == this.profiles[index].name && profile.carrotsCount == this.profiles[index].carrotsCount ) {
+        return parseInt(index);
+      }
+    }
+  }
+
+  addSubtractCarrots(profile: Rabbit, count: number): number {
+    let index: number = this.getProfileIndex(profile);           // SUBTRACTING OR ADDING NEW CARROTS WITH MIN AND MAX COUNT,
+    let target: Rabbit = this.profiles[index];                    // RETURNS INDEX OF EDITED PROFILE
+    
+    target.carrotsCount += count;
+
+    if(target.carrotsCount < 0) { target.carrotsCount = 0 }
+    else if (target.carrotsCount > 99999 ) {
+      target.carrotsCount = 99999;  
+    } 
+  
+    this.savePushProfiles();
+
+    return index;
   }
 
 

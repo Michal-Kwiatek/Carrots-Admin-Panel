@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Rabbit } from './rabbit.interface'
 import { ProfilesService } from './profiles.service';
 
@@ -25,7 +25,7 @@ import { ProfilesService } from './profiles.service';
   `,
   styleUrls: ['./edit-profile.component.scss']
 })
-export class EditProfileComponent implements OnInit {
+export class EditProfileComponent {
     profiles: Array<Rabbit>;
     selectedProfile: Rabbit;
     buttonsSetup: Array<any>;
@@ -34,21 +34,23 @@ export class EditProfileComponent implements OnInit {
       profilesService.getProfilesStream()
       .subscribe( profiles => {
         this.profiles = profiles.slice();        // UPDATING PROFILES LIST IN TABLE WHEN NEW PROFILES ARRAY IN STREAM
-      })
+        
+        if(!this.selectedProfile) {
+          this.selectedProfile = profiles[0];
+        }
+    })
 
       this.buttonsSetup = profilesService.getButtons();        // GETTING BUTTON GROUP SETUP FROM SERVICE
   }
   
-  addRemoveCarrots(value) {
-    console.log(value, typeof value);
+  addRemoveCarrots(value: number): void {
+    let index = this.profilesService.addSubtractCarrots(this.selectedProfile, value);
+    this.selectedProfile = this.profiles[index];
   }
 
   deleteProfile(): void {
-    this.profilesService.deleteProfile(this.selectedProfile);        
-    this.selectedProfile = this.profiles[0];
+    this.profilesService.deleteProfile(this.selectedProfile);  
+    this.selectedProfile = this.profiles[0];      
   }
 
-  ngOnInit() {
-    this.selectedProfile = this.profiles[0]; 
-  }
 }

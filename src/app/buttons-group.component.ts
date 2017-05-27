@@ -11,6 +11,7 @@ import { Component, Input, Output, EventEmitter} from '@angular/core';
   styles: [`
     button {
       margin: 3px;
+      cursor: pointer;
     }
   `]
 })
@@ -22,7 +23,7 @@ export class ButtonsGroupComponent {
   constructor() { }
   
   clicked(value) {
-    this.buttonClicked.emit( parseInt(value) )
+    this.buttonClicked.emit( parseInt(value) )       // EMITING VALUE OF CLICKED BUTTON TO ADD/SUBTRACT CARROTS
   }
 
 }

@@ -20,7 +20,7 @@ export class CoutingSortPipe implements PipeTransform {
     let sortedTable = [];
     for (let j = 0; j < countTable.length; j++) {
       if (countTable[j] !== undefined) {
-        for (let k = 1; k <= countTable[j]; k++) {        // Sorting, pushing into new, sorted Array
+        for (let k = 1; k <= countTable[j]; k++) {        // Sorting, pushing into sorted Array
           for (let profile of profiles) {
             if (profile.carrotsCount == j && k == 1) {
               sortedTable.push(profile)
