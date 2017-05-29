@@ -1,9 +1,9 @@
 # CarrotPanel
 
-Each profile require name(3-18 chars) and count of carrots(max 5 numbers).
-Profiles are saved to both, LocalStorage and app cache to speed up operations. (they'r executed on cached array and then saved to local storage).
-To sort table in real time i have used pipe. (sorting time is logged to console in unit tests).
-You can modify buttons (responsible for adding/subtracting carrots) in profiles.service file.
+* Each profile require name(3-18 chars) and count of carrots(max 5 numbers).
+* Profiles are saved to both, LocalStorage and app cache to speed up operations. (they'r executed on cached array and then saved to local storage).
+* To sort table in real time i have used pipe. (sorting time is logged to console in unit tests).
+* You can modify buttons (responsible for adding/subtracting carrots) in profiles.service file.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
