@@ -29,15 +29,17 @@ import { Rabbit } from './rabbit.interface'
   `]
 })
 export class TableProfilesComponent {
-  
+
   profiles: Array<Rabbit>;
 
   constructor(private profilesService: ProfilesService) {
-    
-    profilesService.getProfilesStream()
-      .subscribe( profiles => {
-        this.profiles = profiles.slice();      // UPDATING PROFILES LIST IN TABLE WHEN NEW PROFILES ARRAY IN STREAM
+    this.getProfiles();
+  }
+
+  getProfiles(): void {
+    this.profilesService.getProfilesStream()
+      .subscribe(profiles => {
+        this.profiles = profiles.slice();      // UPDATING PROFILES TABLE WHEN NEW PROFILES ARRAY APPEARS IN STREAM
       })
   }
-  
 }

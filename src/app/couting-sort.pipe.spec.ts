@@ -18,14 +18,11 @@ function fillTable(count: number): Array<Rabbit> {
 describe('CoutingSortPipe', () => {
   var elementsCount: number = 20000,  
       elements: Array<Rabbit> = fillTable(elementsCount),
-      pipe: CoutingSortPipe,
+      pipe = new CoutingSortPipe(),
       sorted: Array<Rabbit>;
   
-  beforeEach( () => {
-    pipe = new CoutingSortPipe();
-  });
-  
-  it(`Elements count before sort should be ${elementsCount}`, () => {
+ 
+  it(`Elements count before sorting should be ${elementsCount}`, () => {
     expect(elements.length).toBe(elementsCount)
   });
 
@@ -41,7 +38,7 @@ describe('CoutingSortPipe', () => {
     expect(elapsedTime).toBeLessThan(10);
   });
 
-  it(`Elements count after sort should be ${elementsCount}`, () => {
+  it(`Elements count after sorting should be ${elementsCount}`, () => {
     expect(sorted.length).toBe(elementsCount)
   });
 

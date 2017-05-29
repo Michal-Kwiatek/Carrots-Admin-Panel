@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Rabbit } from './rabbit.interface'
 import { ProfilesService } from './profiles.service';
 
@@ -25,32 +25,38 @@ import { ProfilesService } from './profiles.service';
   `,
   styleUrls: ['./edit-profile.component.scss']
 })
-export class EditProfileComponent {
-    profiles: Array<Rabbit>;
-    selectedProfile: Rabbit;
-    buttonsSetup: Array<any>;
+export class EditProfileComponent implements OnInit {
+  profiles: Array<Rabbit>;
+  selectedProfile: Rabbit;
+  buttonsSetup: Array<any>;
 
-  constructor(private profilesService: ProfilesService) { 
-      profilesService.getProfilesStream()
-      .subscribe( profiles => {
-        this.profiles = profiles.slice();        // UPDATING PROFILES LIST IN TABLE WHEN NEW PROFILES ARRAY IN STREAM
-        
-        if(!this.selectedProfile) {
+  constructor(private profilesService: ProfilesService) { }
+
+  getProfiles(): void {
+    this.profilesService.getProfilesStream()
+      .subscribe(profiles => {
+        this.profiles = profiles.slice();        // UPDATING PROFILES LIST WHEN NEW PROFILES ARRAY APPEARS IN STREAM
+
+        if (!this.selectedProfile && profiles.length) {
           this.selectedProfile = profiles[0];
         }
-    })
-
-      this.buttonsSetup = profilesService.getButtons();        // GETTING BUTTON GROUP SETUP FROM SERVICE
+      })
   }
-  
+
   addRemoveCarrots(value: number): void {
     let index = this.profilesService.addSubtractCarrots(this.selectedProfile, value);
-    this.selectedProfile = this.profiles[index];
-  }
+    this.selectedProfile = this.profiles[index];          // WITHOUT THIS RESELECT, AFTER ADD/SUBTRACT OPERATION, 
+  }                                                         // PROFILE SELECOTR NO LONGER DISPLAYS SELECTED PROFILE 
+  
 
   deleteProfile(): void {
-    this.profilesService.deleteProfile(this.selectedProfile);  
-    this.selectedProfile = this.profiles[0];      
+    this.profilesService.deleteProfile(this.selectedProfile);
+    this.selectedProfile = this.profiles[0];
+  }
+  
+  ngOnInit() {
+     this.getProfiles();
+     this.buttonsSetup = this.profilesService.getButtons();  // LOADING BUTTON GROUP SETUP FROM SERVICE
   }
 
 }

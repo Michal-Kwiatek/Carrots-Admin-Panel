@@ -9,7 +9,7 @@ export class CoutingSortPipe implements PipeTransform {
   transform(profiles: Array<Rabbit>): Array<Rabbit> {
 
     let countTable = [];
-    for (let i = 0; i < profiles.length; i++) {
+    for (let i in profiles) {
       if (countTable[profiles[i].carrotsCount] === undefined) {
         countTable[profiles[i].carrotsCount] = 1;                  // Couting how many times each carrots count number appers
       } else {
