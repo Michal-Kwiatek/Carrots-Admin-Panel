@@ -28,6 +28,10 @@ import { Component } from '@angular/core';
       border-bottom: 1px solid black;
     }
     
+    new-profile, edit-profile {
+      min-width: 350px;
+    }
+
     .createAndEdit {
       justify-content: space-around;
     }
@@ -38,6 +42,16 @@ import { Component } from '@angular/core';
 
     table-profiles /deep/ table{
         margin-top: 50px;
+    }
+
+    @media (max-width: 420px) {
+      new-profile, edit-profile {
+        width: 98vw;
+      }
+
+      edit-profile {
+        margin-top: 20px;
+      }
     }
   `]
 })

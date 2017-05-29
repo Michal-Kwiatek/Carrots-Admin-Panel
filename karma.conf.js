@@ -40,7 +40,7 @@ module.exports = function (config) {
     browserNoActivityTimeout : 60000,
     captureTimeout: 60000,
     autoWatch: true,
-    // browsers: ['Chrome'],
+    browsers: ['Chrome'],
     singleRun: false
   });
 };
