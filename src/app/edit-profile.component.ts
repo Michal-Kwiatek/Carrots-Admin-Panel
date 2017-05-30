@@ -46,7 +46,7 @@ export class EditProfileComponent implements OnInit {
   addRemoveCarrots(value: number): void {
     let index = this.profilesService.addSubtractCarrots(this.selectedProfile, value);
     this.selectedProfile = this.profiles[index];          // WITHOUT THIS RESELECT, AFTER ADD/SUBTRACT OPERATION, 
-  }                                                         // PROFILE SELECOTR NO LONGER DISPLAYS SELECTED PROFILE 
+  }                                                         // PROFILE SELECTOR NO LONGER DISPLAYS SELECTED PROFILE 
   
 
   deleteProfile(): void {
