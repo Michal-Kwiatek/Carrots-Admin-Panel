@@ -7,7 +7,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
-If `ng command` dont work just add `npm run` before e.g. `npm run ng serve`
+If `ng command` don't work just add `npm run` before e.g. `npm run ng serve`
 
 ## Development server
 
