@@ -7,9 +7,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
+If `ng command` dont work just add `npm run` before e.g. `npm run ng serve`
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+Run `ng serve`  for a dev server. Navigate to `http://localhost:4200/`. 
 
 ## Build
 
