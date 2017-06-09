@@ -1,3 +1,5 @@
+[React&Flux version with some improvements](https://github.com/mkwiatek/Carrots-React-Flux)
+
 # CarrotPanel
 
 * Each profile require name(3-18 chars) and count of carrots(max 5 numbers).
